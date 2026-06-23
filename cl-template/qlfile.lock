@@ -1,0 +1,16 @@
+("quicklisp" .
+ (:class qlot/source/dist:source-dist
+  :initargs (:distribution "https://beta.quicklisp.org/dist/quicklisp.txt" :%version :latest)
+  :version "2026-01-01"))
+("cl-repl" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "lisp-maintainers/cl-repl" :ref nil :branch nil :tag nil)
+  :version "github-a6451fdd4374260aaa663d9336d6a4e14c7a785c"))
+("alive-lsp" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "nobody-famous/alive-lsp" :ref nil :branch nil :tag nil)
+  :version "github-85f118b85d1543bb7413166b6793b87975b4d439"))
+("cl-lsp" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "cxxxr/cl-lsp" :ref nil :branch nil :tag nil)
+  :version "github-f06e9b8bb8111f9643f7988dcb9b98705887e1ed"))

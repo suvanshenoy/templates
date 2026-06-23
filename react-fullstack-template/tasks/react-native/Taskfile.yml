@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  web:
+    dir: ../../core/react-native
+    cmd: bun expo start --web
+
+  add:android:
+    dir: ../../core/react-native
+    cmd: bun expo prebuild --platform android
+
+  android:
+    dir: ../../core/react-native
+    cmd: bun expo start --android
+
+  android:build:
+    dir: ../../core/react-native
+    cmd: bun eas-cli build --platform android
+
+  setup:
+    - cp -rf ../../apps/react-native-src/node_modules/@deps/react-native/node_modules/* ../../apps/react-native-src/node_modules
+    - cp -rf ../../apps/react-native-src/node_modules/@deps/react-native/node_modules/.bin ../../apps/react-native-src/node_modules
+
+    - cp -rf ../../core/react-native/node_modules/@apps/react-native-src/node_modules/* ../../core/react-native/node_modules
+    - cp -rf ../../core/react-native/node_modules/@apps/react-native-src/node_modules/.bin ../../core/react-native/node_modules
+
+    - defer: cp -rf ../../apps/react-native-src/node_modules/@packages/react-native/node_modules/* ../../apps/react-native-src/node_modules

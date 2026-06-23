@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  cleanup:
+    cmds:
+      - rm -rf ../../core/react-vite/node_modules
+      - rm -rf ../../core/react-vite/dist
+      - rm -rf ../../core/react-ionic-vite/node_modules
+      - rm -rf ../../core/react-ionic-vite/dist
+      - rm -rf ../../apps/react-ionic-vite/android
+      - rm -rf ../../core/react-native/node_modules
+      - rm -rf ../../apps/react-native/android
+      - rm -rf ../../core/react-electron-vite/node_modules
+      - rm -rf ../../core/react-electron-vite/dist
+      - rm -rf ../../core/nest/node_modules
+      - rm -rf ../../core/nest/dist
+
+      - rm -rf ../../apps/react-vite-src/node_modules
+      - rm -rf ../../apps/react-ionic-vite-src/node_modules
+      - rm -rf ../../apps/react-native-src/node_modules
+      - rm -rf ../../apps/react-electron-vite-src/node_modules
+      - rm -rf ../../apps/nest-src/node_modules
+
+      - rm -rf ../../packages/react-vite/node_modules
+      - rm -rf ../../packages/react-ionic-vite/node_modules
+      - rm -rf ../../packages/react-native/node_modules
+      - rm -rf ../../packages/react-electron-vite/node_modules
+      - rm -rf ../../packages/nest/node_modules
+
+      - rm -rf ../../deps/react-vite/node_modules
+      - rm -rf ../../deps/react-ionic-vite/node_modules
+      - rm -rf ../../deps/react-native/node_modules
+      - rm -rf ../../deps/react-electron-vite/node_modules
+      - rm -rf ../../deps/nest/node_modules
+      - rm -rf ../../deps/prisma/node_modules
+      - rm -rf ../../node_modules
+
+      - rm -rf ../../scripts/node_modules

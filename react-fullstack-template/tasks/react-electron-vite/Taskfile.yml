@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  dev:
+    dir: ../../core/react-electron-vite
+    cmd: bun electron-vite dev -- --no-sandbox
+
+  build:
+    dir: ../../core/react-electron-vite
+    cmds:
+      - tsc --composite false
+      - bun electron-vite build
+
+  postinstall:
+    dir: ../../core/react-electron-vite
+    cmd: bun electron-builder install-app-deps
+
+  build:unpack:
+    dir: ../../core/react-electron-vite
+    cmds:
+      - task: build
+      - cmd: bun electron-builder --dir
+
+  build:linux:
+    dir: ../../core/react-electron-vite
+    cmds:
+      - task: build
+      - cmd: bun electron-builder --linux
+
+  build:win:
+    dir: ../../core/react-electron-vite
+    cmds:
+      - task: build
+      - cmd: bun electron-builder --win
+
+  build:mac:
+    dir: ../../core/react-electron-vite
+    cmds:
+      - task: build
+      - cmd: bun electron-builder --mac
+  setup:
+    - cp -rf ../../apps/react-electron-vite-src/node_modules/@deps/react-electron-vite/node_modules/* ../../apps/react-electron-vite-src/node_modules
+    - cp -rf ../../apps/react-electron-vite-src/node_modules/@deps/react-electron-vite/node_modules/.bin ../../apps/react-electron-vite-src/node_modules
+
+    - cp -rf ../../core/react-electron-vite/node_modules/@apps/react-electron-vite-src/node_modules/* ../../core/react-electron-vite/node_modules
+    - cp -rf ../../core/react-electron-vite/node_modules/@apps/react-electron-vite-src/node_modules/.bin ../../core/react-electron-vite/node_modules
+
+    - defer: cp -rf ../../apps/react-electron-vite-src/node_modules/@packages/react-electron-vite/node_modules/* ../../apps/react-electron-vite-src/node_modules
+
+    - cp -rf ../../tests/react-electron-vite/node_modules/@deps/react-electron-vite/node_modules/*
+      ../../tests/react-electron-vite/node_modules
+
+    - cp -rf ../../tests/react-electron-vite/node_modules/@deps/react-electron-vite/node_modules/.bin ../../tests/react-electron-vite/node_modules

@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  clean:build:
+    cmd: gradle clean build {{.CLI_ARGS}}
+
+  build:
+    cmd: gradle build {{.CLI_ARGS}}
+
+  run:
+    cmd: gradle run {{.CLI_ARGS}}
+
+  package:jar:
+    cmd: gradle jar {{.CLI_ARGS}}
+
+  run:cli:
+    cmd: gradle :java-template-cli:run {{.CLI_ARGS}}
+
+  metadata-copy:cli:
+    cmds:
+      - gradle :java-template-cli:metadataCopy --task run --dir src/main/resources/META-INF/native-image
+
+  compile:cli:
+    cmd: gradle :java-template-cli:nativeCompile
+
+  compile:run:cli:
+    cmd: gradle :java-template-cli:nativeRun
+
+  run:watch:
+    cmd: watchexec -c -r -e java,kts -- task run
+
+  run:watch:cli:
+    cmd: watchexec -c -r -e java,kts -- task run:cli

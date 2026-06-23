@@ -1,0 +1,10 @@
+{
+	"name": "@core/react-ionic-vite",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"dependencies": {
+		"@deps/react-ionic-vite": "workspace:*",
+		"@apps/react-ionic-vite-src": "workspace:*"
+	}
+}

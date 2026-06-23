@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  init:
+    cmds:
+      - bun --cwd ../../core/react-vite biome init
+      - bun --cwd ../../core/react-ionic-vite biome init
+      - bun --cwd ../../core/react-electron-vite biome init
+      - bun --cwd ../../core/react-native biome init
+      - bun --cwd ../../core/nest biome init
+
+      - bun --cwd ../../apps/react-vite-src biome init
+      - bun --cwd ../../apps/react-ionic-vite-src biome init
+      - bun --cwd ../../apps/react-electron-vite-src biome init
+      - bun --cwd ../../apps/react-native-src biome init
+      - bun --cwd ../../apps/nest-src biome init
+
+      - bun --cwd ../../packages/react-vite biome init
+      - bun --cwd ../../packages/react-ionic-vite biome init
+      - bun --cwd ../../packages/react-electron-vite biome init
+      - bun --cwd ../../packages/react-native biome init
+      - bun --cwd ../../packages/nest biome init
+
+  check:
+    cmds:
+      - bun --cwd ../../core/react-vite  biome check
+      - bun --cwd ../../core/react-ionic-vite  biome check
+      - bun --cwd ../../core/react-electron-vite biome check
+      - bun --cwd ../../core/react-native biome check
+      - bun --cwd ../../core/nest biome check
+
+      - bun --cwd ../../apps/react-vite-src biome check
+      - bun --cwd ../../apps/react-ionic-vite-src biome check
+      - bun --cwd ../../apps/react-electron-vite-src biome check
+      - bun --cwd ../../apps/react-native-src biome check
+      - bun --cwd ../../apps/nest-src biome check
+
+      - bun --cwd ../../packages/react-vite biome check
+      - bun --cwd ../../packages/react-ionic-vite biome check
+      - bun --cwd ../../packages/react-electron-vite biome check
+      - bun --cwd ../../packages/react-native biome check
+      - bun --cwd ../../packages/nest biome check
+
+  fix:
+    cmds:
+      - bun --cwd ../../core/react-vite biome check --fix
+      - bun --cwd ../../core/react-ionic-vite biome check --fix
+      - bun --cwd ../../core/react-electron-vite biome check --fix
+      - bun --cwd ../../core/react-native biome check --fix
+      - bun --cwd ../../core/nest biome check --fix
+
+      - bun --cwd ../../apps/react-vite-src biome check --fix
+      - bun --cwd ../../apps/react-ionic-vite-src biome check --fix
+      - bun --cwd ../../apps/react-electron-vite-src biome check --fix
+      - bun --cwd ../../apps/react-native-src biome check --fix
+      - bun --cwd ../../apps/nest-src biome check --fix
+
+      - bun --cwd ../../packages/react-vite biome check --fix
+      - bun --cwd ../../packages/react-ionic-vite biome check --fix
+      - bun --cwd ../../packages/react-electron-vite biome check --fix
+      - bun --cwd ../../packages/react-native biome check --fix
+      - bun --cwd ../../packages/nest biome check --fix
+
+  fix:unsafe:
+    cmds:
+      - bun --cwd ../../core/react-vite biome check --fix --unsafe
+      - bun --cwd ../../core/react-ionic-vite biome check --fix --unsafe
+      - bun --cwd ../../core/react-electron-vite biome check --fix --unsafe
+      - bun --cwd ../../core/react-native biome check --fix --unsafe
+      - bun --cwd ../../core/nest biome check --fix --unsafe
+
+      - bun --cwd ../../apps/react-vite-src biome check --fix --unsafe
+      - bun --cwd ../../apps/react-ionic-vite-src biome check --fix --unsafe
+      - bun --cwd ../../apps/react-electron-vite-src biome check --fix --unsafe
+      - bun --cwd ../../apps/react-native-src biome check --fix --unsafe
+      - bun --cwd ../../apps/nest-src biome check --fix --unsafe
+
+      - bun --cwd ../../packages/react-vite biome check --fix --unsafe
+      - bun --cwd ../../packages/react-ionic-vite biome check --fix --unsafe
+      - bun --cwd ../../packages/react-electron-vite biome check --fix --unsafe
+      - bun --cwd ../../packages/react-native biome check --fix --unsafe
+      - bun --cwd ../../packages/nest biome check --fix --unsafe
+
+  migrate:
+    cmds:
+      - bun --cwd ../../core/react-vite biome migrate --write
+      - bun --cwd ../../core/react-ionic-vite biome migrate --write
+      - bun --cwd ../../core/react-electron-vite biome migrate --write
+      - bun --cwd ../../core/react-native biome migrate --write
+      - bun --cwd ../../core/nest biome migrate --write
+
+      - bun --cwd ../../apps/react-vite-src biome migrate --write
+      - bun --cwd ../../apps/react-ionic-vite-src biome migrate --write
+      - bun --cwd ../../apps/react-electron-vite-src biome migrate --write
+      - bun --cwd ../../apps/react-native-src biome migrate --write
+      - bun --cwd ../../apps/nest-src biome migrate --write
+
+      - bun --cwd ../../packages/react-vite biome migrate --write
+      - bun --cwd ../../packages/react-ionic-vite biome migrate --write
+      - bun --cwd ../../packages/react-electron-vite biome migrate --write
+      - bun --cwd ../../packages/react-native biome migrate --write
+      - bun --cwd ../../packages/nest biome migrate --write
+
+  cleanup:
+    cmds:
+      - rm -rf ../../core/react-vite/biome.json
+      - rm -rf ../../core/react-ionic-vite/biome.json
+      - rm -rf ../../core/react-electron-vite/biome.json
+      - rm -rf ../../core/react-native/biome.json
+      - rm -rf ../../core/nest/biome.json
+
+      - rm -rf ../../apps/react-vite-src/biome.json
+      - rm -rf ../../apps/react-ionic-vite-src/biome.json
+      - rm -rf ../../apps/react-electron-vite-src/biome.json
+      - rm -rf ../../apps/react-native-src/biome.json
+      - rm -rf ../../apps/nest-src/biome.json
+
+      - rm -rf ../../packages/react-vite/biome.json
+      - rm -rf ../../packages/react-ionic-vite/biome.json
+      - rm -rf ../../packages/react-electron-vite/biome.json
+      - rm -rf ../../packages/react-native/biome.json
+      - rm -rf ../../packages/nest/biome.json

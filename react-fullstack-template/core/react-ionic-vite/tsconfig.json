@@ -1,0 +1,16 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"types": ["vite/client", "node"],
+		"noEmit": true,
+		"lib": ["DOM", "ESNext", "DOM.Iterable"]
+	},
+	"include": [
+		"vite.config.ts",
+		"main.tsx",
+		"../../apps/react-ionic-vite-src/**/*"
+	],
+	"exclude": ["node_modules", "dist"]
+}

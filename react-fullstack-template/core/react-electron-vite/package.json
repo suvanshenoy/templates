@@ -1,0 +1,12 @@
+{
+	"name": "@core/react-electron-vite",
+	"version": "1.0.0",
+	"description": "An Electron application with React and TypeScript",
+	"main": "./out/main/index.js",
+	"author": "example.com",
+	"homepage": "https://electron-vite.org",
+	"dependencies": {
+		"@deps/react-electron-vite": "workspace:*",
+		"@apps/react-electron-vite-src": "workspace:*"
+	}
+}

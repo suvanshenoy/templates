@@ -1,0 +1,9 @@
+{
+	"$schema": "https://json.schemastore.org/package",
+	"name": "@apps/nest-src",
+	"dependencies": {
+		"@deps/nest": "workspace:*",
+		"@deps/orm": "workspace:*",
+		"@packages/nest": "workspace:*"
+	}
+}

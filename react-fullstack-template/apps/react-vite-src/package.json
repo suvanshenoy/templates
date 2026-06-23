@@ -1,0 +1,8 @@
+{
+	"$schema": "https://json.schemastore.org/package",
+	"name": "@apps/react-vite-src",
+	"dependencies": {
+		"@deps/react-vite": "workspace:*",
+		"@packages/react-vite": "workspace:*"
+	}
+}

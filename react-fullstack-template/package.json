@@ -1,0 +1,17 @@
+{
+	"$schema": "https://json.schemastore.org/package",
+	"name": "react-fullstack-template",
+	"workspaces": {
+		"packages": [
+			"./deploy/*",
+			"./packages/*",
+			"./core/*",
+			"./apps/*",
+			"./tests/*",
+			"./deps/*"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.13"
+	}
+}

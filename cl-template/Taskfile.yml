@@ -1,0 +1,8 @@
+version: "3"
+
+tasks:
+  run:
+    cmd: sbcl --script main.lisp
+
+  run:watch:
+    cmd: watchexec -r -c -e lisp -- task run

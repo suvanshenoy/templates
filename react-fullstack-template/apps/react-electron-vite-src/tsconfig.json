@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"noEmit": true,
+		"types": ["vite/client", "node", "electron-vite/node"],
+		"lib": ["ESNext", "DOM", "DOM.Iterable"]
+	},
+	"exclude": ["node_modules"]
+}

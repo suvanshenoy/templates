@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  compile:
+    cmd: bun build --compile --minify  --outfile=bin/ts-template lib/ts_template.ts
+
+  test:
+    cmd: bun vitest {{.CLI_ARGS}}
+
+  run:
+    cmd: tsc && bun main.ts
+
+  run:watch:
+    cmd: watchexec -r -c -e ts -- task run

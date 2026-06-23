@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  run:
+    cmd: ty check && uv run main.py
+
+  run:watch:
+    cmd: watchexec -r -c -e py,toml -- task run

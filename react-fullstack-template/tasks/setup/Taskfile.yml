@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  setup:
+    cmds:
+      - bun i
+      - task --dir ../react-vite/Taskfile.yml setup
+      - task --dir ../react-ionic-vite/Taskfile.yml setup
+      - task --dir ../react-electron-vite/Taskfile.yml setup
+      - task --dir ../react-native/Taskfile.yml setup
+      - task --dir ../nest/Taskfile.yml setup
