@@ -2,28 +2,33 @@
 
 version: "3"
 
+vars:
+  APPS_DIR: ../../apps/react-native-src
+  CORE_DIR: ../../core/react-native
+
 tasks:
   web:
-    dir: ../../core/react-native
+    dir: "{{.CORE_DIR}}"
     cmd: bun expo start --web
 
   add:android:
-    dir: ../../core/react-native
+    dir: "{{.CORE_DIR}}"
     cmd: bun expo prebuild --platform android
 
   android:
-    dir: ../../core/react-native
+    dir: "{{.CORE_DIR}}"
     cmd: bun expo start --android
 
   android:build:
-    dir: ../../core/react-native
+    dir: "{{.CORE_DIR}}"
     cmd: bun eas-cli build --platform android
 
   setup:
-    - cp -rf ../../apps/react-native-src/node_modules/@deps/react-native/node_modules/* ../../apps/react-native-src/node_modules
-    - cp -rf ../../apps/react-native-src/node_modules/@deps/react-native/node_modules/.bin ../../apps/react-native-src/node_modules
+    cmds:
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-native/node_modules/* {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/react-native/node_modules/@apps/react-native-src/node_modules/* ../../core/react-native/node_modules
-    - cp -rf ../../core/react-native/node_modules/@apps/react-native-src/node_modules/.bin ../../core/react-native/node_modules
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-native/node_modules/.bin {{.APPS_DIR}}/node_modules
 
-    - defer: cp -rf ../../apps/react-native-src/node_modules/@packages/react-native/node_modules/* ../../apps/react-native-src/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-native-src/node_modules/* {{.CORE_DIR}}/node_modules
+
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-native-src/node_modules/.bin {{.CORE_DIR}}/node_modules

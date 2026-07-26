@@ -4,8 +4,17 @@
 	"compilerOptions": {
 		"jsx": "react-jsx",
 		"noEmit": true,
-		"types": ["vite/client", "node", "electron-vite/node"],
-		"lib": ["ESNext", "DOM", "DOM.Iterable"]
+		"types": [
+			"vite/client",
+			"node",
+			"electron-vite/node",
+			"vitest",
+			"vitest/browser"
+		],
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"paths": {
+			"@/*": ["./*"]
+		}
 	},
 	"exclude": ["node_modules"]
 }

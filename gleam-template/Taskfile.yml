@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  EXECUTABLE: gleam_template
+
+tasks:
+  compile:
+    cmds:
+      - gleam export escript
+      - sudo cp -rvf {{.EXECUTABLE}} /usr/local/bin/{{.EXECUTABLE | replace "_" "-"}}
+    sources:
+      - src/**/*
+    generates:
+      - ./{{.EXECUTABLE | replace "_" "-"}}
+    status:
+      - test -f {{.EXECUTABLE | replace "_" "-"}}
+
+  compile:run:
+    cmds:
+      - task: compile
+      - '{{.EXECUTABLE | replace "_" "-"}} {{.CLI_ARGS}}'
+
+  test:
+    cmd: gleam test {{.CLI_ARGS}}
+
+  test:watch:
+    cmd: watchexec -r -c -e gleam -- task test -- {{.CLI_ARGS}}
+
+  cleanup:
+    cmds:
+      - gleam clean
+      - defer: rm {{.EXECUTABLE}}

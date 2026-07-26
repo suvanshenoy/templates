@@ -1,7 +1,34 @@
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
-
 version: "3"
 
+vars:
+  EXECUTABLE: ex_template
+
 tasks:
-  test:
-    cmd: clear;mix test.interactive --trace
+  compile:
+    cmds:
+      - MIX_ENV=prod mix release --compile --archives-check --deps-check --force
+      - cp -rvf ./burrito_out/ghosteditor_linux ./burrito_out/ghost-editor
+      - sudo cp -rvf ./burrito_out/ghost-editor /usr/local/bin/ghost-editor
+    sources:
+      - lib/**/*
+    generates:
+      - ./burrito_out/ghosteditor_linux
+      - ./burrito_out/ghost-editor
+    status:
+      - test -f burrito_out/ghosteditor_linux
+      - test -f burrito_out/ghost-editor
+
+  compile:cleanup:
+    cmds:
+      - rm -rvf burrito_out
+      - rm -rvf ~/.local/share/.burrito
+
+  compile:run:
+    cmds:
+      - task: compile
+      - sudo ghost-editor
+
+  cleanup:
+    cmds:
+      - mix deps.clean
+      - rm -rvf _build

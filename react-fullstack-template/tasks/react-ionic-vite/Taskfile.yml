@@ -2,45 +2,50 @@
 
 version: "3"
 
+vars:
+  APPS_DIR: ../../apps/react-ionic-vite-src
+  CORE_DIR: ../../core/react-ionic-vite
+
 tasks:
   web:
-    dir: ../../core/react-ionic-vite
+    dir: "{{.CORE_DIR}}"
     cmd: bun run vite
 
   web:build:
-    dir: ../../core/react-ionic-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - tsc -b
       - bun run vite build
+    status:
+      - test -d dist
 
   web:test:browser:
-    dir: ../../tests/react-ionic-vite
-    cmd: bun vitest
+    dir: "{{.CORE_DIR}}"
+    cmd: bun vitest {{.CLI_ARGS}}
 
   add:android:
-    dir: ../../core/react-ionic-vite
-    prompt: "Are you sure you want to add android?"
+    dir: "{{.CORE_DIR}}"
     cmd: bun cap add android
+    status:
+      - test -d android
 
   android:
+    dir: "{{.CORE_DIR}}"
     cmds:
       - task: web:build
-      - defer: bun --cwd ../../core/react-ionic-vite cap run android
+      - defer: bun cap run android
       - task: add:android
 
   setup:
-    - cp -rf ../../apps/react-ionic-vite-src/node_modules/@deps/react-ionic-vite/node_modules/* ../../apps/react-ionic-vite-src/node_modules
-    - cp -rf ../../apps/react-ionic-vite-src/node_modules/@deps/react-ionic-vite/node_modules/.bin ../../apps/react-ionic-vite-src/node_modules
+    cmds:
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-ionic-vite/node_modules/* {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/react-ionic-vite/node_modules/@deps/react-ionic-vite/node_modules/* ../../core/react-ionic-vite/node_modules
-    - cp -rf ../../core/react-ionic-vite/node_modules/@deps/react-ionic-vite/node_modules/.bin ../../core/react-ionic-vite/node_modules
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-ionic-vite/node_modules/.bin {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/react-ionic-vite/node_modules/@apps/react-ionic-vite-src/node_modules/* ../../core/react-ionic-vite/node_modules
-    - cp -rf ../../core/react-ionic-vite/node_modules/@apps/react-ionic-vite-src/node_modules/.bin ../../core/react-ionic-vite/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@deps/react-ionic-vite/node_modules/* {{.CORE_DIR}}/node_modules
 
-    - defer: cp -rf ../../apps/react-ionic-vite-src/node_modules/@packages/react-ionic-vite/node_modules/* ../../apps/react-ionic-vite-src/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@deps/react-ionic-vite/node_modules/.bin {{.CORE_DIR}}/node_modules
 
-    - cp -rf ../../tests/react-ionic-vite/node_modules/@deps/react-ionic-vite/node_modules/*
-      ../../tests/react-ionic-vite/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-ionic-vite-src/node_modules/* {{.CORE_DIR}}/node_modules
 
-    - cp -rf ../../tests/react-ionic-vite/node_modules/@deps/react-ionic-vite/node_modules/.bin ../../tests/react-ionic-vite/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-ionic-vite-src/node_modules/.bin {{.CORE_DIR}}/node_modules

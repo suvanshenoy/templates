@@ -3,7 +3,6 @@
 	"name": "@apps/nest-src",
 	"dependencies": {
 		"@deps/nest": "workspace:*",
-		"@deps/orm": "workspace:*",
-		"@packages/nest": "workspace:*"
+		"@deps/orm": "workspace:*"
 	}
 }

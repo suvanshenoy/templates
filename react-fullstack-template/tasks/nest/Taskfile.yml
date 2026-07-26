@@ -2,6 +2,10 @@
 
 version: "3"
 
+vars:
+  APPS_DIR: ../../apps/nest-src
+  CORE_DIR: ../../core/nest
+
 dotenv:
   - .env
 
@@ -9,60 +13,66 @@ env:
   NODE_ENV: development
 
 tasks:
+  cli:
+    dir: "{{.APPS_DIR}}"
+    cmd: bun nest {{.CLI_ARGS}}
+
   start:
     dotenv:
       - .env
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       - echo "[NODE_ENV=$NODE_ENV]"
       - NODE_ENV=$NODE_ENV && bun nest start
 
   build:
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       - echo "[NODE_ENV=$NODE_ENV]"
       - NODE_ENV=$NODE_ENV && bun nest build
 
   start:watch:
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       - echo "[NODE_ENV=$NODE_ENV]"
       - NODE_ENV=$NODE_ENV && bun nest start --watch
 
   start:watch:debug:
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       - echo "[NODE_ENV=$NODE_ENV]"
       - NODE_ENV=$NODE_ENV && bun nest start --watch --debug
 
   orm:init:
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       # - bun run prisma init --datasource-provider postgresql --output ./generated/prisma
       - bun prisma generate
       - bun prisma migrate dev --name init
 
   orm:deploy:
-    dir: ../../apps/nest-src
+    dir: "{{.APPS_DIR}}"
     cmds:
       - task: orm:init
       - bun prisma migrate deploy
       - bun prisma db push
 
   setup:
-    - cp -rf ../../apps/nest-src/node_modules/@deps/nest/node_modules/* ../../apps/nest-src/node_modules
-    - cp -rf ../../apps/nest-src/node_modules/@deps/nest/node_modules/.bin ../../apps/nest-src/node_modules
+    - cp -rf {{.APPS_DIR}}/node_modules/@deps/nest/node_modules/* {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../apps/nest-src/node_modules/@deps/orm/node_modules/* ../../apps/nest-src/node_modules
-    - cp -rf ../../apps/nest-src/node_modules/@deps/orm/node_modules/.bin ../../apps/nest-src/node_modules
+    - cp -rf {{.APPS_DIR}}/node_modules/@deps/nest/node_modules/.bin {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/nest/node_modules/@deps/nest/node_modules/* ../../core/nest/node_modules
-    - cp -rf ../../core/nest/node_modules/@deps/nest/node_modules/.bin ../../core/nest/node_modules
+    - cp -rf {{.APPS_DIR}}/node_modules/@deps/orm/node_modules/* {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/nest/node_modules/@deps/orm/node_modules/* ../../core/nest/node_modules
-    - cp -rf ../../core/nest/node_modules/@deps/orm/node_modules/.bin ../../core/nest/node_modules
+    - cp -rf {{.APPS_DIR}}/node_modules/@deps/orm/node_modules/.bin {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/nest/node_modules/@apps/nest-src/node_modules/* ../../core/nest/node_modules
-    - cp -rf ../../core/nest/node_modules/@apps/nest-src/node_modules/.bin ../../core/nest/node_modules
+    - cp -rf {{.CORE_DIR}}/node_modules/@deps/nest/node_modules/* {{.CORE_DIR}}/node_modules
 
-    - defer: cp -rf ../../apps/nest-src/node_modules/@packages/nest/node_modules/* ../../apps/nest-src/node_modules
+    - cp -rf {{.CORE_DIR}}/node_modules/@deps/nest/node_modules/.bin {{.CORE_DIR}}/node_modules
+
+    - cp -rf {{.CORE_DIR}}/node_modules/@deps/orm/node_modules/* {{.CORE_DIR}}/node_modules
+
+    - cp -rf {{.CORE_DIR}}/node_modules/@deps/orm/node_modules/.bin {{.CORE_DIR}}/node_modules
+
+    - cp -rf {{.CORE_DIR}}/node_modules/@apps/nest-src/node_modules/* {{.CORE_DIR}}/node_modules
+    - cp -rf {{.CORE_DIR}}/node_modules/@apps/nest-src/node_modules/.bin {{.CORE_DIR}}/node_modules

@@ -23,12 +23,6 @@ tasks:
       - rm -rf ../../apps/react-electron-vite-src/node_modules
       - rm -rf ../../apps/nest-src/node_modules
 
-      - rm -rf ../../packages/react-vite/node_modules
-      - rm -rf ../../packages/react-ionic-vite/node_modules
-      - rm -rf ../../packages/react-native/node_modules
-      - rm -rf ../../packages/react-electron-vite/node_modules
-      - rm -rf ../../packages/nest/node_modules
-
       - rm -rf ../../deps/react-vite/node_modules
       - rm -rf ../../deps/react-ionic-vite/node_modules
       - rm -rf ../../deps/react-native/node_modules

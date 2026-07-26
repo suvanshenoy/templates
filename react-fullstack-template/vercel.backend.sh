@@ -8,4 +8,6 @@ eval $(/vercel/.local/bin/mise activate bash)
 
 /vercel/.local/share/mise/shims/task --dir ../../tasks/setup setup
 
+/vercel/.local/share/mise/shims/task --dir ../../tasks/nest orm:init
+
 /vercel/.local/share/mise/shims/task --dir ../../tasks/nest build

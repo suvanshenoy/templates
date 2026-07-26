@@ -2,54 +2,54 @@
 
 version: "3"
 
+vars:
+  APPS_DIR: ../../apps/react-electron-vite-src
+  CORE_DIR: ../../core/react-electron-vite
+
 tasks:
   dev:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmd: bun electron-vite dev -- --no-sandbox
 
   build:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - tsc --composite false
       - bun electron-vite build
 
   postinstall:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmd: bun electron-builder install-app-deps
 
   build:unpack:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - task: build
       - cmd: bun electron-builder --dir
 
   build:linux:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - task: build
       - cmd: bun electron-builder --linux
 
   build:win:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - task: build
       - cmd: bun electron-builder --win
 
   build:mac:
-    dir: ../../core/react-electron-vite
+    dir: "{{.CORE_DIR}}"
     cmds:
       - task: build
       - cmd: bun electron-builder --mac
   setup:
-    - cp -rf ../../apps/react-electron-vite-src/node_modules/@deps/react-electron-vite/node_modules/* ../../apps/react-electron-vite-src/node_modules
-    - cp -rf ../../apps/react-electron-vite-src/node_modules/@deps/react-electron-vite/node_modules/.bin ../../apps/react-electron-vite-src/node_modules
+    cmds:
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-electron-vite/node_modules/* {{.APPS_DIR}}/node_modules
 
-    - cp -rf ../../core/react-electron-vite/node_modules/@apps/react-electron-vite-src/node_modules/* ../../core/react-electron-vite/node_modules
-    - cp -rf ../../core/react-electron-vite/node_modules/@apps/react-electron-vite-src/node_modules/.bin ../../core/react-electron-vite/node_modules
+      - cp -rf {{.APPS_DIR}}/node_modules/@deps/react-electron-vite/node_modules/.bin {{.APPS_DIR}}/node_modules
 
-    - defer: cp -rf ../../apps/react-electron-vite-src/node_modules/@packages/react-electron-vite/node_modules/* ../../apps/react-electron-vite-src/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-electron-vite-src/node_modules/* {{.CORE_DIR}}/node_modules
 
-    - cp -rf ../../tests/react-electron-vite/node_modules/@deps/react-electron-vite/node_modules/*
-      ../../tests/react-electron-vite/node_modules
-
-    - cp -rf ../../tests/react-electron-vite/node_modules/@deps/react-electron-vite/node_modules/.bin ../../tests/react-electron-vite/node_modules
+      - cp -rf {{.CORE_DIR}}/node_modules/@apps/react-electron-vite-src/node_modules/.bin {{.CORE_DIR}}/node_modules

@@ -1,0 +1,2 @@
+defmodule ExTemplate do
+end

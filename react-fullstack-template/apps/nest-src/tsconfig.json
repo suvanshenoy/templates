@@ -5,7 +5,10 @@
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
 		"types": ["node"],
-		"outDir": "../../core/nest/dist"
+		"outDir": "../../core/nest/dist",
+		"paths": {
+			"@/*": ["./*"]
+		}
 	},
 	"exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
 }

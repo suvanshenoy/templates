@@ -1,2 +1,0 @@
-defmodule Cli do
-end

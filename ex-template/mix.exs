@@ -1,9 +1,9 @@
-defmodule Cli.MixProject do
+defmodule ExTemplate.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :cli,
+      app: :ex_template,
       version: "0.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
@@ -16,7 +16,7 @@ defmodule Cli.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Cli.Application, []}
+      mod: {ExTemplate.Application, []}
     ]
   end
 

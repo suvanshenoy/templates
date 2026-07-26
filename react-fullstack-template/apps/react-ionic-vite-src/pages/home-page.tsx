@@ -14,9 +14,6 @@ export function HomePage() {
 					<IonTitle className="text-center">This is home page</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-			<IonContent>
-				<div>foo</div>
-			</IonContent>
 		</IonPage>
 	);
 }

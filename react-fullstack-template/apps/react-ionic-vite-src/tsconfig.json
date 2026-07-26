@@ -4,7 +4,7 @@
 	"compilerOptions": {
 		"jsx": "react-jsx",
 		"noEmit": true,
-		"types": ["vite/client", "node"],
+		"types": ["node", "vite/client", "vitest", "vitest/browser"],
 		"lib": ["DOM", "ESNext", "DOM.Iterable"],
 		"paths": {
 			"@/*": ["./*"]

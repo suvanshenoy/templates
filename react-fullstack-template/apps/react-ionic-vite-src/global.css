@@ -17,7 +17,7 @@
 @import "@ionic/react/css/palettes/dark.class.css";
 @import "@ionic/react/css/palettes/dark.system.css";
 
-ion-content {
+ion-toolbar {
   --background: red;
   --color: blue;
 }
