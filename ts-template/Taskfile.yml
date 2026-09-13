@@ -2,20 +2,28 @@
 
 version: "3"
 
+vars:
+  EXECUTABLE: ts-template
+
 tasks:
   compile:
     cmds:
       - bun tsc
-      - bun build --compile --minify  --outfile=bin/ts-template lib/ts-template.ts
+      - bun build --compile --minify  --outfile=bin/{{.EXECUTABLE}} lib/{{.EXECUTABLE}}.ts
+    sources:
+      - lib/**/*
+    generates:
+      - ./bin/{{.EXECUTABLE}}
+    status:
+      - test -f ./bin/{{.EXECUTABLE}}
+
+  compile:run:
+    cmds:
+      - task: compile
+      - './bin/{{.EXECUTABLE}} {{.CLI_ARGS}}'
 
   biome:check:
-    cmd: bun biome check
-
-  biome:fix:
-    cmd: bun biome check --fix
-
-  biome:fix:unsafe:
-    cmd: bun biome check --fix --unsafe
+    cmd: bun biome check {{.CLI_ARGS}}
 
   biome:migrate:
     cmd: bun biome migrate --write
